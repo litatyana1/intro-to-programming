@@ -8,7 +8,7 @@ footer.appendChild(copyright);
 
 //Adding Skills
 
-const skills = ["HTML", "JavaScript", "GitHub", "CSS"];
+const skills = ["HTML", "JavaScript", "Git", "CSS"];
 const skillsSection = document.getElementById("skills");
 
 skillsList = skillsSection.querySelector("ul");
@@ -78,33 +78,36 @@ function closeMenu() {
 }
 
 //Adding JSON/AJAX project link
-let githubRequest = new XMLHttpRequest();
-githubRequest.open("GET", "https://api.github.com/users/litatyana1/repos");
-githubRequest.send();
+// let githubRequest = new XMLHttpRequest();
+// githubRequest.open('GET', 'https://api.github.com/users/litatyana1/repos');
+// githubRequest.send();
 
-githubRequest.addEventListener("load", function () {
-  let repositories = JSON.parse(githubRequest.response);
-  console.log(repositories);
+// githubRequest.addEventListener("load", function () {
+//   let repositories = JSON.parse(githubRequest.response);
+//   console.log(repositories);
 
-  let projectSection = document.getElementById("projects");
-  let projectList = projectSection.querySelector("ul");
-  for (let i = 0; i < repositories.length; i++) {
-    const project = document.createElement("li");
-    project.innerHTML += `<a href = "${repositories[i].html_url}" target="_blank"> ${repositories[i].name} </a>`;
-    projectList.appendChild(project);
-  }
-});
+//   let projectSection = document.getElementById("projects")
+//   let projectList = projectSection.querySelector("ul")
+//   for (let i = 0; i < repositories.length; i++) {
+//     const project = document.createElement("li")
+//     project.innerHTML += `<a href="${repositories[i].html_url}" target="_blank"> ${repositories[i].name} </a>`;
+//     projectList.appendChild(project)
+//   }
+// });
 
-  fetch("GET", "https://api.github.com/users/litatyana1/repos")
-    .then((res) => res.json())
-    .then((data) => {
+  fetch('https://api.github.com/users/litatyana1/repos', {
+  method: "GET",
+})
 
-      const projectSection = document.querySelector('#projects')
-      const projectList = projectSection.querySelector('ul')
+    .then(response => response.json())
+    .then(repositories => {
+
+      let projectSection = document.getElementById("projects")
+      let projectList = projectSection.querySelector("ul")
 
       for (let i = 0; i < repositories.length; i++) {
-        const project = document.createElement('li')
-        project.innerHTML += `<a href = "${repositories[i].html_url}" target="_blank"> ${repositories[i].name} </a>`;
+        let project = document.createElement("li")
+        project.innerHTML += `<a href="${repositories[i].html_url}" target="_blank"> ${repositories[i].name} </a>`;
         projectList.appendChild(project)
       }
     })
