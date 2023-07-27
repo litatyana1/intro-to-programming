@@ -35,7 +35,7 @@ messageForm.item(0).addEventListener("submit", (event) => {
   const messageList = messageSection.querySelector("ul");
   const newMessage = document.createElement("li");
 
-  newMessage.innerHTML = `<a href="mailto: ${email}">${name}</a>`;
+  newMessage.innerHTML = `<a href="mailto:${email}">${name}</a>`;
   const messageSpan = document.createElement("span");
   messageSpan.innerHTML = `<span>${message}</span>`;
 
@@ -47,6 +47,11 @@ messageForm.item(0).addEventListener("submit", (event) => {
   removeButton.addEventListener("click", () => {
     const entry = removeButton.parentNode;
     entry.remove();
+    //Remove message section if no input
+    if (messageList.childElementCount == 0) {
+      const messageSection = document.getElementById("messages");
+      messageSection.style.display = "none";
+    }
   });
 
   newMessage.appendChild(removeButton);
@@ -95,23 +100,22 @@ function closeMenu() {
 //   }
 // });
 
-  fetch('https://api.github.com/users/litatyana1/repos', {
+// Adding GitHub links using API via Fetch
+fetch("https://api.github.com/users/litatyana1/repos", {
   method: "GET",
 })
+  .then((response) => response.json())
+  .then((repositories) => {
+    let projectSection = document.getElementById("projects");
+    let projectList = projectSection.querySelector("ul");
+    for (let i = 0; i < repositories.length; i++) {
+      let project = document.createElement("li");
+      project.innerHTML += `<a href="${repositories[i].html_url}" target="_blank"> ${repositories[i].name} </a>`;
+      projectList.appendChild(project);
+    }
+  });
 
-    .then(response => response.json())
-    .then(repositories => {
-
-      let projectSection = document.getElementById("projects")
-      let projectList = projectSection.querySelector("ul")
-
-      for (let i = 0; i < repositories.length; i++) {
-        let project = document.createElement("li")
-        project.innerHTML += `<a href="${repositories[i].html_url}" target="_blank"> ${repositories[i].name} </a>`;
-        projectList.appendChild(project)
-      }
-    })
-
+// dark mode feature
 // function myFunction() {
 //   var element = document.body;
 //   element.classList.toggle("dark-mode");
