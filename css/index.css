@@ -4,10 +4,10 @@ html {
 
 .main-header {
   background-color: #e0da1b;
-  padding: 10px 16px;
+  padding: 0;
   position: sticky;
   top: 0;
-  width: 100%;
+  margin: -1rem;
   height: 7rem;
 }
 
@@ -20,6 +20,7 @@ html {
 
 .hamburger {
   display: none;
+  padding: 1rem;
 }
 
 .bar {
@@ -53,9 +54,10 @@ html {
 }
 
 .name {
-  font-size: 2.1rem;
   font-weight: bold;
   color: rgb(106, 8, 106);
+  padding: 1rem;
+  margin: 0;
 }
 
 body {
@@ -65,6 +67,7 @@ body {
   font-size: 1.2rem;
   margin: 0.5rem;
   padding: 0.5rem;
+  overflow-x: hidden;
 }
 
 section {
@@ -77,6 +80,8 @@ section {
   border-top-right-radius: 50% 50%;
   border-bottom-right-radius: 50% 50%;
   border-bottom-left-radius: 50% 50%;
+  width: 128px; 
+  height: 110px;
 }
 
 h1,
@@ -96,6 +101,10 @@ li {
 }
 
 .skills-border li {
+  display: flex;
+  justify-content: space-between;
+  align-items: left;
+  padding: 1rem 5rem;
   border: 2px solid;
   border-color:  #a7417c;
   border-radius: 10px;
@@ -146,22 +155,15 @@ li {
   border-radius: 50%;
 }
 
-/* Add a hover effect if you want */
+/* hover effect */
 .fa:hover {
   opacity: 0.7;
 }
 
-/* .icon {
+.icon {
   text-decoration: none;
-} */
-
-/* Set a specific color for each brand */
-
-/* Facebook */
-/* .fa-facebook {
-  background: #3B5998;
-  color: white;
-}  */
+  border: none;
+}
 
 footer {
   background-image: linear-gradient(
@@ -210,6 +212,7 @@ button {
   border-style: none;
   max-height: 1rem;
   align-content: center;
+  margin: 2rem 2rem;
 }
 
 .nav-menu.responsive a {
@@ -248,7 +251,55 @@ button {
   }
 
   .nav-item {
-    margin: 2.5rem 0;
+    margin: 0;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .hamburger {
+    display: block;
+    cursor: pointer;
+  }
+
+  .hamburger.active .bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger.active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  .hamburger.active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+ 
+}
+
+@media only screen and (max-width: 1024px) {
+  .nav-menu {
+    position: fixed;
+    left: -100%;
+    top: 5rem;
+    flex-direction: column;
+    background-color: #fff;
+    width: 100%;
+    border-radius: 10px;
+    text-align: center;
+    transition: 0.3s;
+    box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05,);
+  }
+
+  .navbar {
+    padding: 1.5rem;
+  }
+  .nav-menu.active {
+    left: 0;
+  }
+
+  .nav-item {
+    margin: 0;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
   }
 
   .hamburger {
