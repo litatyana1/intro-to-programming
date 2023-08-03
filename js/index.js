@@ -116,7 +116,7 @@ fetch("https://api.github.com/users/litatyana1/repos", {
   });
 
 // dark mode feature
-// function myFunction() {
-//   var element = document.body;
-//   element.classList.toggle("dark-mode");
-// }
+function myFunction() {
+  let element = document.body;
+  element.classList.toggle("dark-mode");
+}
